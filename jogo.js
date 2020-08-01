@@ -16,8 +16,8 @@ const planoDeFundo = {
     y: canvas.height - 204,
     desenha() {
         contexto.fillStyle = '#70c5ce';
-        contexto.fillRect(0,0, canvas.clientWidth, canvas.height)
-        
+        contexto.fillRect(0, 0, canvas.clientWidth, canvas.height)
+
         contexto.drawImage(
             sprites,
             planoDeFundo.spriteX, planoDeFundo.spriteY,
@@ -25,14 +25,14 @@ const planoDeFundo = {
             planoDeFundo.x, planoDeFundo.y,
             planoDeFundo.largura, planoDeFundo.largura
         ),
-        contexto.drawImage(
-            sprites,
-            planoDeFundo.spriteX, planoDeFundo.spriteY,
-            planoDeFundo.largura, planoDeFundo.altura,
-            (planoDeFundo.x + planoDeFundo.largura), planoDeFundo.y,
-            planoDeFundo.largura, planoDeFundo.largura
-        )
-}
+            contexto.drawImage(
+                sprites,
+                planoDeFundo.spriteX, planoDeFundo.spriteY,
+                planoDeFundo.largura, planoDeFundo.altura,
+                (planoDeFundo.x + planoDeFundo.largura), planoDeFundo.y,
+                planoDeFundo.largura, planoDeFundo.largura
+            )
+    }
 }
 
 const chao = {
@@ -50,14 +50,14 @@ const chao = {
             chao.x, chao.y,
             chao.largura, chao.largura
         );
-    contexto.drawImage(
-        sprites,
-        chao.spriteX, chao.spriteY,
-        chao.largura, chao.altura,
-        (chao.x + chao.largura), chao.y,
-        chao.largura, chao.largura
-    );
-},
+        contexto.drawImage(
+            sprites,
+            chao.spriteX, chao.spriteY,
+            chao.largura, chao.altura,
+            (chao.x + chao.largura), chao.y,
+            chao.largura, chao.largura
+        );
+    },
 }
 
 
@@ -68,6 +68,14 @@ const flappyBird = {
     altura: 24,
     x: 10,
     y: 50,
+    gravidade: 0.25,
+    velocidade: 0,
+
+    atualiza() {
+        flappyBird.velocidade = flappyBird.velocidade + flappyBird.gravidade;
+        console.log(flappyBird.velocidade)
+        flappyBird.y = flappyBird.y + flappyBird.velocidade;
+    },
     desenha() {
         contexto.drawImage(
             sprites,
@@ -84,10 +92,8 @@ function loop() {
     planoDeFundo.desenha();
     flappyBird.desenha();
     chao.desenha();
-    
+    flappyBird.atualiza();
 
-    flappyBird.y = flappyBird.y + 1;
-    
     requestAnimationFrame(loop);
 }
 
