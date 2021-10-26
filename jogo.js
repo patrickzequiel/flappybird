@@ -1,6 +1,3 @@
-console.log('[DevSoutinho] Flappy Bird');
-console.log('Inscreva-se no canal :D https://www.youtube.com/channel/UCzR2u5RWXWjUh7CwLSvbitA');
-
 let frames = 0;
 const som_HIT = new Audio();
 som_HIT.src = './efeitos/hit.wav';
